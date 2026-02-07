@@ -1,0 +1,24 @@
+# IR-001 — Suspected Brute Force (Windows Event ID 4625)
+
+## Summary
+Multiple Windows failed logon events were generated in a short time window, indicating brute-force style behavior.
+
+## Detection
+- Wazuh base rule: **60122** — Logon Failure (unknown user / bad password)
+- Windows event: **4625** (Failed logon)
+- Custom elevated rule: **100501** (Level **12**)
+
+## Evidence (Lab)
+- Agent: Windows VM
+- Observed fields:
+  - TargetUserName: Administrator
+  - IpAddress: 127.0.0.1 (local test)
+- Wazuh displayed repeated authentication failures and raised the custom alert.
+
+## Impact
+No successful authentication occurred (failed logons only). Activity was generated in an isolated lab environment.
+
+## Recommendations (Real World)
+- Enable account lockout policy + strong password policy
+- Alert on repeated failed logons by user/IP
+- Investigate source host/process and block suspicious IPs when applicable

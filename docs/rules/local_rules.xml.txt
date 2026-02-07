@@ -1,0 +1,4 @@
+<rule id="100501" level="12">
+  <if_matched_sid>60122</if_matched_sid>
+  <description>Possible brute force: repeated failed logons (based on rule 60122)</description>
+</rule>
